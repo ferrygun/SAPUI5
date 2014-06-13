@@ -20,24 +20,8 @@ sap.ui.jsview("sap.ui.demo.myFiori.view.DMaterial", {
 			[
 		 	
 			 	new sap.m.DisplayListItem({label:"Material:",value:"{Material}"}),
-			 	new sap.m.DisplayListItem({label:"Material:",value:{
-			 		path:"Materials",
-			 		formatter:function(iValue){ 
-			 			alert('Here!!');
-						var test = this.getBindingContext();  
-						console.log('SS:' + test);
-
-						var currentdate = new Date(); 
-						var datetime = "Last Sync: " + currentdate.getDate() + "/"
-										+ (currentdate.getMonth()+1)  + "/" 
-										+ currentdate.getFullYear() + " @ "  
-										+ currentdate.getHours() + ":"  
-										+ currentdate.getMinutes() + ":" 
-										+ currentdate.getSeconds();
-
-			 			return currentdate + " sq km";
-			 		}
-			 	}})
+				new sap.m.DisplayListItem({label:"Description:",value:"{MatlDesc}"}),
+			 	
 			 ]});
 		oPage.addContent(oList);
 		
@@ -47,6 +31,8 @@ sap.ui.jsview("sap.ui.demo.myFiori.view.DMaterial", {
 			onBeforeShow: function(evt) {
 				this.setBindingContext(evt.data);
 				console.log(evt.data.getObject().name);
+
+				this.setModel(sap.ui.getCore().getModel());
 			}
 		}, this); // give this (= the View) as additional parameter to make it available inside the delegate's functions as "this" object
 
